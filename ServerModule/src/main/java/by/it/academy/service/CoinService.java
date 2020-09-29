@@ -16,4 +16,5 @@ public class  CoinService {
     public List<Coin> getAll() {
         return dao.readAll("");
     }
+
 }

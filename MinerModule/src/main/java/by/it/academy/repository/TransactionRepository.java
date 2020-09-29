@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface TransactionRepository extends CrudRepository<Transaction, String> {
     List<Transaction> findAllByStatus(String aNew);
+
+    Transaction findFirstByStatus(String aNew);
 }

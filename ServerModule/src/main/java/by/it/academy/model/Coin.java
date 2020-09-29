@@ -18,7 +18,6 @@ public class Coin implements Serializable {
     @Column(name = "previous_hash")
     private String previousHash;
     private String hash;
-    @Column(name = "transactions")
-    private String transactions;
+    private String transaction;
     private long timestamp;
 }

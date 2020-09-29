@@ -18,6 +18,7 @@
       <th scope="col">Previous Hash</th>
       <th scope="col">Hash</th>
       <th scope="col">Timestamp</th>
+      <th scope="col">Check if valid</th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +28,11 @@
       <td>${coin.previousHash}</td>
       <td>${coin.hash}</td>
       <td>${coin.timestamp}</td>
+      <td>
+      <a href ="${coin.id}/check">
+      Check
+      </a>
+      </td>
     </tr>
    </c:forEach>
   </tbody>

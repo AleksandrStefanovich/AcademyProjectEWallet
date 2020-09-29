@@ -1,0 +1,1 @@
+<h1>Coin is ${validity}</h1>

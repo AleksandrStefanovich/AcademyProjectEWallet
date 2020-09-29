@@ -19,11 +19,11 @@ public class Mine {
     UserRepository userRepository;
 
 
-    @Scheduled(fixedRate = 2000)
+    @Scheduled(fixedRate = 6000)
     public void mine(){
         String userId = "user" + (int)Math.floor(Math.random()*10+1);
         User user = userRepository.findByUserId(userId);
-         createNewCoin(user);
+          createNewCoin(user);
     }
 
 

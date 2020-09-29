@@ -21,14 +21,20 @@ public class CheckController {
     public ModelAndView homePage(
             @PathVariable long coinId,
             ModelAndView modelAndView) {
-        Coin coin = dao.read(Coin.class, coinId);
-        boolean result = validationService.validate(coin);
-        if (result) {
+        if (coinId == 0) {
             modelAndView.addObject("validity", "OK");
+            modelAndView.setViewName("check");
+            return modelAndView;
         } else {
-            modelAndView.addObject("validity", "NOT OK");
+            Coin coin = dao.read(Coin.class, coinId);
+            boolean result = validationService.validate(coin);
+            if (result) {
+                modelAndView.addObject("validity", "OK");
+            } else {
+                modelAndView.addObject("validity", "NOT OK");
+            }
+            modelAndView.setViewName("check");
+            return modelAndView;
         }
-        modelAndView.setViewName("check");
-        return modelAndView;
     }
 }

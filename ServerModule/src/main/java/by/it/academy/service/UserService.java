@@ -62,6 +62,7 @@ public class UserService {
         Wallet senderWallet = walletDao.read(Wallet.class, sender.getId());
         if (senderWallet.getBalance() < transaction.getAmount()) return false;
         User receiver = userDao.find(transaction.getReceiverId());
+        if (receiver == null) return false;
         Wallet receiverWallet = walletDao.read(Wallet.class, receiver.getId());
         long senderBalance = senderWallet.getBalance();
         long receiverBalance = receiverWallet.getBalance();

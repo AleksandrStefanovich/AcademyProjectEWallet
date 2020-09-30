@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+
 
 @Service
 public class Mine {
@@ -19,7 +19,7 @@ public class Mine {
     UserRepository userRepository;
 
 
-    @Scheduled(fixedRate = 6000)
+    @Scheduled(fixedRate = 5000)
     public void mine(){
         String userId = "user" + (int)Math.floor(Math.random()*10+1);
         User user = userRepository.findByUserId(userId);

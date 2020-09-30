@@ -39,6 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/register.html").permitAll()
                 .antMatchers("/coins.html").permitAll()
                 .antMatchers("/about.html").permitAll()
+                .antMatchers("/*/check").permitAll()
                 .and()
                 .csrf().disable();
         super.configure(http);

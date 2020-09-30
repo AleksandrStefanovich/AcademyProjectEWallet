@@ -30,8 +30,9 @@ public class CoinGenerator {
         if (transaction != null) {
             coin.setTransaction(transaction.getId());
             coin.setHash(hash(lastCoinHash, transaction));
+        }else {
+            coin.setHash(hash(lastCoinHash));
         }
-        coin.setHash(hash(lastCoinHash));
         return coin;
     }
 

@@ -76,10 +76,5 @@ public class UserRepository implements Dao<User>, ApplicationContextAware {
     @Override
     public List<User> readAll(String searchStr) {
         return null;
-//                sessionFactory
-//                .getCurrentSession()
-//                .createQuery("from Recipient r where r.emailAddress like :searchStr", User.class)
-//                .setParameter("searchStr", "%" + searchStr + "%")
-//                .list();
     }
 }

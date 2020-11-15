@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.util.Date;
-
+/*
+Class is used to generate new coin(block)
+ */
 
 @Service
 public class CoinGenerator {
@@ -23,10 +25,14 @@ public class CoinGenerator {
 
     public Coin generateCoin(String lastCoinHash, Transaction transaction) {
         Coin coin = new Coin();
+        //setting of id for new coin
         coin.setId(coinRepository.findFirstByOrderByIdDesc().getId() + 1);
+        //add previous coin hash to new coin
         coin.setPreviousHash(lastCoinHash);
         Date date = new Date();
+        //new coin creation time
         coin.setTimestamp(date.getTime());
+        //add transaction to coin if exists and generating coin's hash
         if (transaction != null) {
             coin.setTransaction(transaction.getId());
             coin.setHash(hash(lastCoinHash, transaction));
@@ -36,6 +42,7 @@ public class CoinGenerator {
         return coin;
     }
 
+    //generating hash for coin with transaction inside
     @SneakyThrows
     private String hash(String lastCoinHash, Transaction transaction) {
         byte[] bytes = ArrayUtils.addAll(lastCoinHash.getBytes(),transaction.toString().getBytes());
@@ -44,6 +51,7 @@ public class CoinGenerator {
 
     }
 
+    //generating hash for coin without transaction
     @SneakyThrows
     private String hash(String lastCoinHash) {
         MessageDigest m = MessageDigest.getInstance("MD5");

@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/*
+logic of creating new coin(block)
+ */
+
 @Service
 public class CoinService {
 
@@ -28,11 +32,18 @@ public class CoinService {
     CoinGenerator coinGenerator;
 
     public boolean createCoin(User user) {
+        //first it finds last coin hash
         String lastCoinHash = coinRepository.findFirstByOrderByIdDesc().getHash();
+        //second it finds not approved(new) transactions
         Transaction transaction = transactionRepository.findFirstByStatus("new");
+        //then it generates new coin
         Coin coin = coinGenerator.generateCoin(lastCoinHash, transaction);
+        //and saves coin
         coinRepository.save(coin);
+        //check to find out if coin is saved
         boolean result = coinRepository.existsById(coin.getId());
+        //then we give user who mined coin a reward of 1 coin to user's wallet
+        //and set transaction status to "approved" if we have a transaction in coin
         if (result) {
             Wallet wallet = walletRepository.findById(user.getId()).orElse(null);
             long balance = wallet.getBalance();

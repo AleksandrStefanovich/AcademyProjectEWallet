@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-
+/*
+Controller for getting transactions info
+ */
 @Controller
 public class TransactionHistoryController {
 
